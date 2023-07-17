@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Stack, TextField } from '@mui/material'
+import { Button, Stack, TextField } from '@mui/material'
 import React, { useState } from 'react'
 
 //axios is used to fetch and post api data.
@@ -70,7 +70,7 @@ function AddUser() {
           <TextField value={phone} onChange={(e) => setPhone(e.target.value)} label='Phone Number' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='text'   />
         </Stack>
         <Stack direction='row' spacing={4} >
-          <TextField onChange={(e) => setUserType(e.target.value)} value={userType} label='User Type' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='text'   />
+          <TextField onChange={(e) => setUserType(e.target.value)} value={userType} label='User Type' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='text'   />
           <TextField onChange={(e) => setPhoto(e.target.value)} value={photo} label='User Photo URL' helperText= 'Optional field' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='text'   />
         </Stack>
         <Stack direction='row' spacing={4}>
