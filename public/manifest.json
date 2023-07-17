@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Senior 2 App",
+  "name": "This is the web app for senior 2 medical system.",
   "icons": [
     {
       "src": "favicon.ico",
