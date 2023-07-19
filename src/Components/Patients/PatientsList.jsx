@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Stack, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, AppBar, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Slide, Stack, Toolbar, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -6,39 +6,11 @@ import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import '../Users/User.css'
 import CloseIcon from '@mui/icons-material/Close'
+import OrderForm from './OrderForm'
 
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
-    padding: theme.spacing(2),
-  },
-  '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
-  },
-}));
-
-function BootstrapDialogTitle(props) {
-  const { children, onClose, ...other } = props;
-
-  return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
-      {children}
-      {onClose ? (
-        <IconButton
-          aria-label="close"
-          onClick={onClose}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            color: (theme) => theme.palette.grey[500],
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </DialogTitle>
-  );
-}
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+})
 
 function PatientsList() {
 
@@ -118,8 +90,8 @@ function PatientsList() {
                     </Grid>
                     <Grid item xs={6}>
                       <Item>
-                        <Typography >Password:</Typography>
-                        <Typography >{item.password}</Typography>
+                        <Typography >Phone Number:</Typography>
+                        <Typography >{item.phoneNumber}</Typography>
                       </Item>
                     </Grid>
                     <Grid item xs={6}>
@@ -136,7 +108,7 @@ function PatientsList() {
                     </Grid> */}
                     <Grid item xs={6}>
                       <Item align= 'center'>
-                        <Button variant='contained' onClick={handleClickOpen}>
+                        <Button color='success' variant='contained' onClick={handleClickOpen}>
                           Start a healing process
                         </Button>
                       </Item>
@@ -150,23 +122,32 @@ function PatientsList() {
             : 'There is no data.'
           }
       </Stack>
-      <BootstrapDialog
-      onClose={handleClose}
-      aria-labelledby="customized-dialog-title"
-      open={open}
-      > 
-      <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-        Modal title
-      </BootstrapDialogTitle>
-      <DialogContent dividers>
-        test
-      </DialogContent>
-      <DialogActions>
-        <Button autoFocus onClick={handleClose}>
-          Save changes
-        </Button>
-      </DialogActions>
-    </BootstrapDialog>
+      <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
+        <AppBar sx={{ position: 'relative', backgroundColor: '#1b5e20' }}>
+          <Toolbar>
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={handleClose}
+              aria-label="close"
+            >
+              <CloseIcon />
+            </IconButton>
+            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+              Starting a patient healing process
+            </Typography>
+            <Button autoFocus color="inherit" onClick={handleClose}>
+              Close
+            </Button>
+          </Toolbar>
+        </AppBar>
+        <OrderForm />
+      </Dialog>
   </>
   )
 }
