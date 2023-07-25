@@ -40,3 +40,9 @@ export default App;
 
 // install axios package:
 // npm i axios
+
+//install firebase package:
+// npm install firebase
+
+// install uid package:
+// npm install uid

@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, AppBar, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, IconButton, Slide, Stack, Toolbar, Typography } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, AppBar, Button, Dialog, Grid, IconButton, Slide, Stack, Toolbar, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -17,6 +17,7 @@ function PatientsList() {
   const [patients, setPatients] = useState([])
   const [expanded, setExpanded] = useState(false)
   const [open, setOpen] = useState(false)
+  // const [Name, setName] = useState("")
   
   // when the component mount useEffect() hook.
   useEffect(() => {
@@ -41,7 +42,9 @@ function PatientsList() {
     color: theme.palette.text,
   }))
 
-  const handleClickOpen = () => {
+  const handleClickOpen = (Name) => {
+    // setName(Name)
+    // console.log("Patient Name: ", Name)
     setOpen(true);
   }
   const handleClose = () => {
@@ -100,14 +103,9 @@ function PatientsList() {
                         <Typography >{item.disease}</Typography>
                       </Item>
                     </Grid>
-                    {/* <Grid item xs={6}>
-                      <Item>
-                      <Typography >Id:</Typography>
-                      <Typography >{item.id}</Typography>
-                      </Item>
-                    </Grid> */}
                     <Grid item xs={6}>
                       <Item align= 'center'>
+                        {/* <Button color='success' variant='contained' onClick={handleClickOpen(item.name)}> */}
                         <Button color='success' variant='contained' onClick={handleClickOpen}>
                           Start a healing process
                         </Button>
@@ -146,6 +144,7 @@ function PatientsList() {
             </Button>
           </Toolbar>
         </AppBar>
+        {/* <OrderForm Name={Name} /> */}
         <OrderForm />
       </Dialog>
   </>
