@@ -1,8 +1,11 @@
+import { Stack } from '@mui/material'
 import React from 'react'
 
 function Home() {
   return (
-    <div>Home</div>
+    <Stack direction='column' spacing={5}>
+      test
+    </Stack>
   )
 }
 

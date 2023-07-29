@@ -131,16 +131,16 @@ function OrderForm({PK, patientName}) {
   const handleSubmitChange = () => {
     update(ref(db, `/${PK}`), {
         uuid: PK,
-        FirstStartTimeInMinute,
-        FirstStartTimeInHours,
-        FirstAmount,
-        SecondStartTimeInMinute,
-        SecondStartTimeInHours,
-        SecondAmount,
-        ThirdStartTimeInMinute,
-        ThirdStartTimeInHours,
-        ThirdAmount,
-        VacuumBoxNum,
+        FirstStartTimeInMinute: parseInt(FirstStartTimeInMinute),
+        FirstStartTimeInHours: parseInt(FirstStartTimeInHours),
+        FirstAmount: parseInt(FirstAmount),
+        SecondStartTimeInMinute: parseInt(SecondStartTimeInMinute),
+        SecondStartTimeInHours: parseInt(SecondStartTimeInHours),
+        SecondAmount: parseInt(SecondAmount),
+        ThirdStartTimeInMinute: parseInt(ThirdStartTimeInMinute),
+        ThirdStartTimeInHours: parseInt(ThirdStartTimeInHours),
+        ThirdAmount: parseInt(ThirdAmount),
+        VacuumBoxNum: VacuumBoxNum
     })
 
     setIsEdited(!isEdited)
