@@ -7,6 +7,7 @@ import { styled } from '@mui/material/styles'
 import '../Users/User.css'
 import CloseIcon from '@mui/icons-material/Close'
 import OrderForm from './OrderForm'
+import Process from './Process'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -144,8 +145,8 @@ function PatientsList() {
             </Button>
           </Toolbar>
         </AppBar>
-        {/* <OrderForm Name={Name} /> */}
-        <OrderForm />
+        {/* <OrderForm /> */}
+        <Process />
       </Dialog>
   </>
   )

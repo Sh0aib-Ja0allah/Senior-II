@@ -13,7 +13,9 @@ import {
 } from 'firebase/database'
 import BasicTable from './BasicTable'
 
-function OrderForm({Name}) {
+function OrderForm({PK}) {
+
+  console.log('PK from order comp:', PK)
 
     const [FirstStartTimeInMinute, setFirstStartTimeInMinute] = useState(0)
     const [FirstStartTimeInHours, setFirstStartTimeInHours] = useState(0)
@@ -30,7 +32,7 @@ function OrderForm({Name}) {
 
     const [orders, setOrders] = useState([])
     const [isEdited, setIsEdited] = useState(false)
-    const [tempUuid, setTempUuid] = useState("")
+    // const [tempUuid, setTempUuid] = useState("")
   
     const handleSubmit = (e) => {
       const data = {
@@ -109,25 +111,25 @@ function OrderForm({Name}) {
   }, [])
   
   // Update the Realtime Firebase:
-  const handleUpdate = (order) => {
-    setIsEdited(true)
-    setTempUuid(order.uuid)
-    setFirstStartTimeInMinute(order.FirstStartTimeInMinute)
-    setFirstStartTimeInHours(order.FirstStartTimeInHours)
-    setFirstAmount(order.FirstAmount)
-    setSecondStartTimeInMinute(order.SecondStartTimeInMinute)
-    setSecondStartTimeInHours(order.FirstStartTimeInHours)
-    setSecondAmount(order.SecondAmount)
-    setThirdStartTimeInMinute(order.ThirdStartTimeInMinute)
-    setThirdStartTimeInHours(order.ThirdStartTimeInHours)
-    setThirdAmount(order.ThirdAmount)
-    setVacuumBoxNum(order.VacuumBoxNum)
+  // const handleUpdate = (order) => {
+  //   setIsEdited(true)
+  //   // setTempUuid(order.uuid)
+  //   setFirstStartTimeInMinute(order.FirstStartTimeInMinute)
+  //   setFirstStartTimeInHours(order.FirstStartTimeInHours)
+  //   setFirstAmount(order.FirstAmount)
+  //   setSecondStartTimeInMinute(order.SecondStartTimeInMinute)
+  //   setSecondStartTimeInHours(order.FirstStartTimeInHours)
+  //   setSecondAmount(order.SecondAmount)
+  //   setThirdStartTimeInMinute(order.ThirdStartTimeInMinute)
+  //   setThirdStartTimeInHours(order.ThirdStartTimeInHours)
+  //   setThirdAmount(order.ThirdAmount)
+  //   setVacuumBoxNum(order.VacuumBoxNum)
 
-    console.log("Data updated successfully")
-  }
+  //   console.log("Data updated successfully")
+  // }
   const handleSubmitChange = () => {
-    update(ref(db, `/${tempUuid}`), {
-        uuid: tempUuid,
+    update(ref(db, `/${PK}`), {
+        uuid: PK,
         FirstStartTimeInMinute,
         FirstStartTimeInHours,
         FirstAmount,
@@ -162,7 +164,18 @@ function OrderForm({Name}) {
     "Box 2",
     "Box 3"
    ]
+
+  useEffect(() => {
+    if (PK === '4e8fbadf3d5') {
+      setVacuumBoxNum('Box 1');
+    } else if (PK === 'e8fbadf3d50') {
+      setVacuumBoxNum('Box 2');
+    } else {
+      setVacuumBoxNum('Box 3');
+    }
+  }, [])
    
+  console.log('Box Num : \n', VacuumBoxNum)
     // Callback function to handle selected Vacuum Box value
     const handleVacuumBoxChange = (value) => {
       setVacuumBoxNum(value); // Update the state with the selected value
@@ -172,6 +185,7 @@ function OrderForm({Name}) {
       <form action="" onSubmit={(event) => {
         event.preventDefault()
         handleSubmit(event)
+        handleSubmitChange()
         // writeOnDatabase()
       }}>
         <Stack 
@@ -203,6 +217,7 @@ function OrderForm({Name}) {
               <Autocomplete
                 disablePortal
                 sx={{ width: '30ch' }}
+                disabled
                 options={VacuumBoxOptions}
                 value={VacuumBoxNum} // Set the value of the Autocomplete to the state value
                 onChange={(event, value) => handleVacuumBoxChange(value)} // Call the callback function on change
@@ -216,9 +231,16 @@ function OrderForm({Name}) {
                   />
                 )}
               />
-              <Typography width='30ch' textAlign='left' variant='body1' color='black'>
-                Remained Quantity: test
-              </Typography>
+              {PK === '4e8fbadf3d5' && <Typography width='30ch' textAlign='left' variant='body1' color='black'>
+                Remained Quantity: Box 1
+              </Typography>}
+              {PK === 'e8fbadf3d50' && <Typography width='30ch' textAlign='left' variant='body1' color='black'>
+                Remained Quantity: Box 2
+              </Typography>}
+              {PK === '8fbadf3d501' && <Typography width='30ch' textAlign='left' variant='body1' color='black'>
+                Remained Quantity: Box 3
+              </Typography>}
+              
             </Stack>
             <Stack direction='row' spacing={4} >
               <TextField value={FirstStartTimeInMinute} onChange={(e) => setFirstStartTimeInMinute(e.target.value)} label='First Start Time In Minute' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
