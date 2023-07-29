@@ -13,9 +13,10 @@ import {
 } from 'firebase/database'
 import BasicTable from './BasicTable'
 
-function OrderForm({PK}) {
+function OrderForm({PK, patientName}) {
 
   console.log('PK from order comp:', PK)
+  console.log('Patient name from Order form:', patientName)
 
     const [FirstStartTimeInMinute, setFirstStartTimeInMinute] = useState(0)
     const [FirstStartTimeInHours, setFirstStartTimeInHours] = useState(0)
@@ -28,7 +29,7 @@ function OrderForm({PK}) {
     const [ThirdAmount, setThirdAmount] = useState(0)
     const [BoxMedicineType, setBoxMedicineType] = useState(' ')
     const [VacuumBoxNum, setVacuumBoxNum] = useState(' ')
-    // const [PatientName, setPatientName] = useState(Name)
+    const [PatientName, setPatientName] = useState(patientName)
 
     const [orders, setOrders] = useState([])
     const [isEdited, setIsEdited] = useState(false)
@@ -46,7 +47,7 @@ function OrderForm({PK}) {
         "ThirdStartTimeInHours" : ThirdStartTimeInHours,
         "ThirdAmount" : ThirdAmount,
         "BoxMedicineType" : BoxMedicineType,
-        // "PatientName" : PatientName,
+        "PatientName" : PatientName,
         "VacuumBoxNum": VacuumBoxNum
       }
     e.preventDefault()
@@ -150,7 +151,27 @@ function OrderForm({PK}) {
     "",
     "Paracetamol",
     "Ibuprofen",
-    "Aspirin"
+    "Aspirin",
+    'Cough Syrup',
+    'Cold Drops',
+    'Fever Elixir',
+    'Sore Throat Solution',
+    'Flu Relief Liquid',
+    'Allergy Syrup',
+    'Nausea Potion',
+    'Digestive Tonic',
+    'Headache Elixir',
+    'Antacid Solution',
+    'Painkiller Drops',
+    'Antiemetic Elixir',
+    'Sleep Aid Liquid',
+    'Decongestant Syrup',
+    'Heartburn Potion',
+    'Children Elixir',
+    'Stomach Soother',
+    'Antihistamine Solution',
+    'Motion Sickness Potion',
+    'Soothing Wash'
    ]
    
     // Callback function to handle selected Box Medicine Type value

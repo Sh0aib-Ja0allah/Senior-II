@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 import BasicTable from './BasicTable'
 import CloseIcon from '@mui/icons-material/Close'
 import OrderForm from './OrderForm'
-function Process() {
+function Process({ patientName }) {
 
   const [Box, setBox] = useState('not Selected')
   const Box1 = '4e8fbadf3d5'
   const Box2 = 'e8fbadf3d50'
   const Box3 = '8fbadf3d501'
-
+  
   const handleButtonClick = (Box) => {
     setBox(Box)
     setOpen(true)
@@ -24,7 +24,8 @@ function Process() {
     setOpen(false)
     setBox('')
   }
-
+  
+  console.log("patient name from process component: \n", patientName)
   console.log('button clicked,\n', "Box ID:", Box)
   
   return (
@@ -66,7 +67,7 @@ function Process() {
             </Button>
           </Toolbar>
         </AppBar>
-        <OrderForm PK={Box} />
+        <OrderForm PK={Box} patientName={patientName} />
       </Dialog>
     </Stack>
   )

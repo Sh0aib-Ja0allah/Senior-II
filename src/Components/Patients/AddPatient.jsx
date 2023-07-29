@@ -66,17 +66,12 @@ function AddPatient() {
           <TextField value={email} onChange={(e) => setEmail(e.target.value)} label='Email' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='email'   />
         </Stack>
         <Stack direction='row' spacing={4} >
-          <TextField value={password} onChange={(e) => setPassword(e.target.value)} label='Password' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='text'   />
           <TextField value={phone} onChange={(e) => setPhone(e.target.value)} label='Phone Number' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='text'   />
+          <TextField onChange={(e) => setDisease(e.target.value)} value={disease} label='Disease' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='text'   />
         </Stack>
         <Stack direction='row' spacing={4} >
-          <TextField onChange={(e) => setDisease(e.target.value)} value={disease} label='Disease' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='text'   />
           <TextField onChange={(e) => setPhoto(e.target.value)} value={photo} label='Patient Photo URL' helperText= 'Optional field' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='text'   />
-        </Stack>
-        <Stack direction='row' spacing={4}>
-        <Button
-          type='submit' color='success' variant='contained' size='large'
-          sx={{my: '15px'}}>
+          <Button type='submit' color='success' variant='contained'  sx={{width: '33ch', height: '60px'}}>
             Submit
           </Button>
         </Stack>

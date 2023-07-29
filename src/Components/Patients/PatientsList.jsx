@@ -18,7 +18,7 @@ function PatientsList() {
   const [patients, setPatients] = useState([])
   const [expanded, setExpanded] = useState(false)
   const [open, setOpen] = useState(false)
-  // const [Name, setName] = useState("")
+  const [Name, setName] = useState("")
   
   // when the component mount useEffect() hook.
   useEffect(() => {
@@ -44,7 +44,7 @@ function PatientsList() {
   }))
 
   const handleClickOpen = (Name) => {
-    // setName(Name)
+    setName(Name)
     // console.log("Patient Name: ", Name)
     setOpen(true);
   }
@@ -107,7 +107,7 @@ function PatientsList() {
                     <Grid item xs={6}>
                       <Item align= 'center'>
                         {/* <Button color='success' variant='contained' onClick={handleClickOpen(item.name)}> */}
-                        <Button color='success' variant='contained' onClick={handleClickOpen}>
+                        <Button color='success' variant='contained' onClick={() => handleClickOpen(item.name)}>
                           Start a healing process
                         </Button>
                       </Item>
@@ -138,7 +138,7 @@ function PatientsList() {
               <CloseIcon />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Starting a patient healing process
+              Starting a patient healing process for {Name}
             </Typography>
             <Button autoFocus color="inherit" onClick={handleClose}>
               Close
@@ -146,7 +146,8 @@ function PatientsList() {
           </Toolbar>
         </AppBar>
         {/* <OrderForm /> */}
-        <Process />
+        {/* Pass the patient name as a prop to the Process component */}
+        <Process patientName={Name} />
       </Dialog>
   </>
   )
