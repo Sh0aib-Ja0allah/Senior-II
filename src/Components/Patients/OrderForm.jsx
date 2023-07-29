@@ -264,8 +264,18 @@ function OrderForm({PK, patientName}) {
               
             </Stack>
             <Stack direction='row' spacing={4} >
-              <TextField value={FirstStartTimeInMinute} onChange={(e) => setFirstStartTimeInMinute(e.target.value)} label='First Start Time In Minute' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
-              <TextField value={FirstStartTimeInHours} onChange={(e) => setFirstStartTimeInHours(e.target.value)} label='First Start Time In Hours' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
+              <TextField value={FirstStartTimeInMinute} onChange={(e) => setFirstStartTimeInMinute(e.target.value)} 
+              inputProps={{
+                min: 0,
+                max: 60,
+              }}
+              label='First Start Time In Minute' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
+              <TextField value={FirstStartTimeInHours} onChange={(e) => setFirstStartTimeInHours(e.target.value)} 
+              inputProps={{
+                min: 0,
+                max: 23,
+              }}
+              label='First Start Time In Hours' required size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
               <TextField 
                 InputProps={{
                     endAdornment: <InputAdornment position="end">ML</InputAdornment>,
@@ -277,8 +287,18 @@ function OrderForm({PK, patientName}) {
               />
             </Stack>
             <Stack direction='row' spacing={4} >
-              <TextField value={SecondStartTimeInMinute} onChange={(e) => setSecondStartTimeInMinute(e.target.value)} label='Second Start Time In Minute' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
-              <TextField value={SecondStartTimeInHours} onChange={(e) => setSecondStartTimeInHours(e.target.value)} label='Second Start Time In Hours' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
+              <TextField value={SecondStartTimeInMinute} onChange={(e) => setSecondStartTimeInMinute(e.target.value)} 
+              inputProps={{
+                min: 0,
+                max: 60,
+              }}
+              label='Second Start Time In Minute' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
+              <TextField value={SecondStartTimeInHours} onChange={(e) => setSecondStartTimeInHours(e.target.value)} 
+              inputProps={{
+                min: 0,
+                max: 23,
+              }}
+              label='Second Start Time In Hours' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
               <TextField 
                 InputProps={{
                     endAdornment: <InputAdornment position="end">ML</InputAdornment>,
@@ -290,8 +310,18 @@ function OrderForm({PK, patientName}) {
               />
             </Stack>
             <Stack direction='row' spacing={4} >
-              <TextField value={ThirdStartTimeInMinute} onChange={(e) => setThirdStartTimeInMinute(e.target.value)} label='Third Start Time In Minute' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
-              <TextField value={ThirdStartTimeInHours} onChange={(e) => setThirdStartTimeInHours(e.target.value)} label='Third Start Time In Hours' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
+              <TextField value={ThirdStartTimeInMinute} onChange={(e) => setThirdStartTimeInMinute(e.target.value)} 
+              inputProps={{
+                min: 0,
+                max: 60,
+              }}
+              label='Third Start Time In Minute' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
+              <TextField value={ThirdStartTimeInHours} onChange={(e) => setThirdStartTimeInHours(e.target.value)} 
+              inputProps={{
+                min: 0,
+                max: 23,
+              }}
+              label='Third Start Time In Hours' size='medium' sx={{width: '30ch'}} variant='outlined' color='success' type='number'/>
               <TextField 
                 InputProps={{
                     endAdornment: <InputAdornment position="end">ML</InputAdornment>,
