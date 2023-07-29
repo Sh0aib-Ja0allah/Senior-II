@@ -4,7 +4,14 @@ import axios from 'axios'
 // Firebase imports:
 import {db} from '../../firebase'
 import {uid} from 'uid'
-import {set, ref, onValue, remove, update} from 'firebase/database'
+import {
+  // set, 
+  ref, 
+  onValue, 
+  // remove, 
+  update
+} from 'firebase/database'
+import BasicTable from './BasicTable'
 
 function OrderForm({Name}) {
 
@@ -259,6 +266,7 @@ function OrderForm({Name}) {
                   Submit
               </Button>
             </Stack>
+            <BasicTable />
         </Stack>
       </form>
     )
