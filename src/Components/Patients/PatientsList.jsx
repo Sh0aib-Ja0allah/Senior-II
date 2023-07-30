@@ -8,6 +8,7 @@ import '../Users/User.css'
 import CloseIcon from '@mui/icons-material/Close'
 import OrderForm from './OrderForm'
 import Process from './Process'
+import Amount from './Amount'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;

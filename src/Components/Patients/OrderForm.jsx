@@ -31,6 +31,7 @@ function OrderForm({PK, patientName}) {
     const [VacuumBoxNum, setVacuumBoxNum] = useState(' ')
     const [PatientName, setPatientName] = useState(patientName)
 
+    const [Amount, setAmount] = useState({})
     const [orders, setOrders] = useState([])
     const [isEdited, setIsEdited] = useState(false)
     // const [tempUuid, setTempUuid] = useState("")
@@ -102,14 +103,22 @@ function OrderForm({PK, patientName}) {
 
   // Read from Realtime Firebase:
   useEffect(() => {
-    onValue(ref(db), snapshot => {
-        const data = snapshot.val()
-        if(data !== null){
-            Object.values(data).map(order => setOrders(oldArray => [...oldArray, order]))
-        }
-        console.log("Firebase Data: \n",data)
-    })
-  }, [])
+    const databaseRef = ref(db);
+    const unsubscribe = onValue(databaseRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data !== null) {
+        const ordersArray = Object.values(data);
+        setOrders(ordersArray);
+      }      
+      console.log( "Data.key", data.d8aa652031d)
+      setAmount(data.d8aa652031d)
+    });
+    
+    // Clean up the listener when the component unmounts
+    return () => {
+        unsubscribe();
+    };
+}, [])
   
   // Update the Realtime Firebase:
   // const handleUpdate = (order) => {
@@ -253,13 +262,13 @@ function OrderForm({PK, patientName}) {
                 )}
               />
               {PK === '4e8fbadf3d5' && <Typography width='30ch' textAlign='left' variant='body1' color='black'>
-                Remained Quantity: Box 1
+                Remained Quantity: {Amount.FirstAmount}
               </Typography>}
               {PK === 'e8fbadf3d50' && <Typography width='30ch' textAlign='left' variant='body1' color='black'>
-                Remained Quantity: Box 2
+                Remained Quantity: {Amount.SecondAmount}
               </Typography>}
               {PK === '8fbadf3d501' && <Typography width='30ch' textAlign='left' variant='body1' color='black'>
-                Remained Quantity: Box 3
+                Remained Quantity: {Amount.ThirdAmount}
               </Typography>}
               
             </Stack>
