@@ -6,9 +6,7 @@ import Paper from '@mui/material/Paper'
 import { styled } from '@mui/material/styles'
 import '../Users/User.css'
 import CloseIcon from '@mui/icons-material/Close'
-import OrderForm from './OrderForm'
 import Process from './Process'
-import Amount from './Amount'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -25,7 +23,7 @@ function PatientsList() {
   useEffect(() => {
     axios.get('https://localhost:7062/api/Patient')
     .then(response => {
-      console.log(response.data)
+      // console.log("Patient List",response.data)
       setPatients(response.data)
     })
     .catch(error => {
@@ -146,7 +144,6 @@ function PatientsList() {
             </Button>
           </Toolbar>
         </AppBar>
-        {/* <OrderForm /> */}
         {/* Pass the patient name as a prop to the Process component */}
         <Process patientName={Name} />
       </Dialog>

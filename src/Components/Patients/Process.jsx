@@ -25,8 +25,8 @@ function Process({ patientName }) {
     setBox('')
   }
   
-  console.log("patient name from process component: \n", patientName)
-  console.log('button clicked,\n', "Box ID:", Box)
+  // console.log("patient name from process component: \n", patientName)
+  // console.log('button clicked,\n', "Box ID:", Box)
   
   return (
     <Stack >

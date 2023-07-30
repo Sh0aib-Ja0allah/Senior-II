@@ -18,7 +18,7 @@ function UsersList() {
   useEffect(() => {
     axios.get('https://localhost:7062/api/User')
     .then(response => {
-      console.log(response.data)
+      // console.log("Users List: ", response.data)
       setUsers(response.data)
     })
     .catch(error => {

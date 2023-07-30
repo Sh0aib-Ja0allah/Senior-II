@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 // Firebase imports:
 import {db} from '../../firebase'
-import {uid} from 'uid'
+// import {uid} from 'uid'
 import {
   // set, 
   ref, 
@@ -15,8 +15,8 @@ import BasicTable from './BasicTable'
 
 function OrderForm({PK, patientName}) {
 
-  console.log('PK from order comp:', PK)
-  console.log('Patient name from Order form:', patientName)
+  // console.log('PK from order comp:', PK)
+  // console.log('Patient name from Order form:', patientName)
 
     const [FirstStartTimeInMinute, setFirstStartTimeInMinute] = useState(0)
     const [FirstStartTimeInHours, setFirstStartTimeInHours] = useState(0)
@@ -110,7 +110,7 @@ function OrderForm({PK, patientName}) {
         const ordersArray = Object.values(data);
         setOrders(ordersArray);
       }      
-      console.log( "Data.key", data.d8aa652031d)
+      // console.log( "FireBase Data.Amount", data.d8aa652031d)
       setAmount(data.d8aa652031d)
     });
     
